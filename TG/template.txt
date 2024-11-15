@@ -1,0 +1,47 @@
+int main(int argc, char *argv[])
+{
+    string in = "";
+    string out = "";
+    bool ans = false;
+    int init = 1;
+
+    for (int i = 1; i < argc; i++){
+        if (strcmp(argv[i], "-h") == 0){
+            cout << "Help:" << endl;
+            cout << "-h: mostra o help" << endl;
+            cout << "-o <arquivo>: redireciona a saida para o 'arquivo'" << endl;
+            cout << "-f <arquivo>: indica o 'arquivo' que contém o grafo de entrada" << endl;
+            cout << "-s: mostra a solução (em ordem crescente)" << endl;
+            cout << "-i: vértice inicial (para o algoritmo de Prim)" << endl;
+            return 0;
+        }
+        else if (strcmp(argv[i], "-o") == 0 && i < argc - 1){
+            out = argv[++i];
+        }
+        else if (strcmp(argv[i], "-f") == 0 && i < argc - 1){
+            in = argv[++i];
+        }
+        else if (strcmp(argv[i], "-s") == 0){
+            ans = true;
+        }
+        else if (strcmp(argv[i], "-i") == 0 && i < argc - 1){
+            init = atoi(argv[++i]);
+        }
+    }
+
+    if (in == ""){
+        cerr << "No input file specified. Use the -f parameter." << endl;
+        return 1;
+    }
+
+    ifstream fin(in);
+    if (!fin){
+        cerr << "Could not open input file: " << in << endl;
+        return 1;
+    }
+
+    int N, m;
+    fin >> N >> m;
+    fin.close();
+
+}
